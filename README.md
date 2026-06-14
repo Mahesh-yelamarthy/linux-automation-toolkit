@@ -24,9 +24,9 @@ This toolkit will gradually cover:
 
 ## Current Status
 
-Day 2 foundation is complete.
+Day 5 process monitoring is complete.
 
-The repository already includes several starter automation scripts. This commit organizes the project around production operations, documents the current script inventory, and adds usage guidance for safe execution.
+The toolkit now includes a production-oriented process monitor with configurable thresholds, required-process detection, operational exit codes, and a dedicated incident response runbook.
 
 ## Repository Structure
 
@@ -39,12 +39,14 @@ linux-automation-toolkit/
 │   └── log-cleanup.sh
 ├── docs/
 │   ├── kubernetes-notes.md
+│   ├── process-monitor-runbook.md
 │   └── usage.md
 ├── health-checks/
 │   └── system-health.sh
 ├── monitoring/
 │   └── disk-monitor.sh
 └── scripts/
+    ├── process-monitor.sh
     └── README.md
 ```
 
@@ -63,6 +65,7 @@ runbooks/
 | `health-checks/system-health.sh` | Health checks | Prints host, uptime, memory, disk, and top process information for quick triage. |
 | `cleanup/log-cleanup.sh` | Maintenance | Removes old `.log` files from `/var/log` based on a retention period. |
 | `backups/backup-home-directory.sh` | Backup | Creates a timestamped compressed backup of the current user's home directory. |
+| `scripts/process-monitor.sh` | Monitoring | Ranks CPU and memory consumers, detects threshold violations, and verifies required processes. |
 
 ## Example Commands
 
@@ -71,6 +74,18 @@ Run the disk monitor:
 ```bash
 bash monitoring/disk-monitor.sh
 ```
+
+Run the process monitor with production-specific thresholds:
+
+```bash
+./scripts/process-monitor.sh \
+  --cpu-threshold 85 \
+  --memory-threshold 75 \
+  --top 10 \
+  --require-process nginx
+```
+
+Exit status `0` means no violations were detected, `1` indicates an operational alert, and `2` indicates invalid configuration or an unsupported runtime.
 
 Run the system health check:
 
@@ -116,6 +131,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 
 - [Script catalog](scripts/README.md)
 - [Usage guide](docs/usage.md)
+- [Process monitor runbook](docs/process-monitor-runbook.md)
 - [Kubernetes notes](docs/kubernetes-notes.md)
 
 ## Recruiter Signal
@@ -128,10 +144,10 @@ This repository is designed to show practical operations ability:
 - Safe automation habits
 - Documentation that helps another engineer operate the toolkit
 
-## Day 2 Commit
+## Day 5 Commit
 
 Recommended commit message:
 
 ```text
-docs: establish linux automation toolkit foundation
+feat: add linux process monitoring script
 ```
