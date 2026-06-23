@@ -24,9 +24,9 @@ This toolkit will gradually cover:
 
 ## Current Status
 
-Day 5 process monitoring is complete.
+Day 8 memory monitoring is complete.
 
-The toolkit now includes a production-oriented process monitor with configurable thresholds, required-process detection, operational exit codes, and a dedicated incident response runbook.
+The toolkit now includes production-oriented process and memory monitors with configurable thresholds, operational exit codes, and dedicated incident response runbooks.
 
 ## Repository Structure
 
@@ -39,6 +39,7 @@ linux-automation-toolkit/
 │   └── log-cleanup.sh
 ├── docs/
 │   ├── kubernetes-notes.md
+│   ├── memory-monitor-runbook.md
 │   ├── process-monitor-runbook.md
 │   └── usage.md
 ├── health-checks/
@@ -46,6 +47,7 @@ linux-automation-toolkit/
 ├── monitoring/
 │   └── disk-monitor.sh
 └── scripts/
+    ├── memory-monitor.sh
     ├── process-monitor.sh
     └── README.md
 ```
@@ -66,6 +68,7 @@ runbooks/
 | `cleanup/log-cleanup.sh` | Maintenance | Removes old `.log` files from `/var/log` based on a retention period. |
 | `backups/backup-home-directory.sh` | Backup | Creates a timestamped compressed backup of the current user's home directory. |
 | `scripts/process-monitor.sh` | Monitoring | Ranks CPU and memory consumers, detects threshold violations, and verifies required processes. |
+| `scripts/memory-monitor.sh` | Monitoring | Reports memory pressure, swap usage, and top resident-memory consumers. |
 
 ## Example Commands
 
@@ -86,6 +89,18 @@ Run the process monitor with production-specific thresholds:
 ```
 
 Exit status `0` means no violations were detected, `1` indicates an operational alert, and `2` indicates invalid configuration or an unsupported runtime.
+
+Run the memory monitor:
+
+```bash
+./scripts/memory-monitor.sh \
+  --used-threshold 85 \
+  --available-threshold 10 \
+  --swap-threshold 50 \
+  --top 10
+```
+
+Exit status `0` means memory pressure is within thresholds, `1` indicates pressure that needs investigation, and `2` indicates invalid configuration or an unsupported runtime.
 
 Run the system health check:
 
@@ -131,6 +146,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 
 - [Script catalog](scripts/README.md)
 - [Usage guide](docs/usage.md)
+- [Memory monitor runbook](docs/memory-monitor-runbook.md)
 - [Process monitor runbook](docs/process-monitor-runbook.md)
 - [Kubernetes notes](docs/kubernetes-notes.md)
 
@@ -144,10 +160,10 @@ This repository is designed to show practical operations ability:
 - Safe automation habits
 - Documentation that helps another engineer operate the toolkit
 
-## Day 5 Commit
+## Day 8 Commit
 
 Recommended commit message:
 
 ```text
-feat: add linux process monitoring script
+feat: add linux memory monitoring script
 ```

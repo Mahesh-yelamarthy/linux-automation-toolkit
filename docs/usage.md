@@ -8,10 +8,10 @@ Expected environment:
 
 - Linux host or Linux-compatible shell environment
 - Bash
-- Standard system utilities such as `df`, `ps`, `find`, `tar`, `hostname`, and `uptime`
+- Standard system utilities such as `df`, `ps`, `find`, `tar`, `hostname`, `awk`, and `uptime`
 - Appropriate permissions for the target script
 
-Some commands may behave differently on macOS because tools such as `free` are Linux-specific.
+Some commands may behave differently on macOS because `/proc/meminfo` and tools such as `free` are Linux-specific.
 
 ## Clone the Repository
 
@@ -43,6 +43,19 @@ Expected behavior:
 - Reads root filesystem usage.
 - Compares usage against the configured threshold.
 - Prints either a warning or an under-control message.
+
+Memory pressure monitor:
+
+```bash
+./scripts/memory-monitor.sh --used-threshold 85 --available-threshold 10 --swap-threshold 50
+```
+
+Expected behavior:
+
+- Reads `/proc/meminfo`.
+- Calculates used memory, available memory, and swap usage.
+- Prints the top resident-memory processes.
+- Exits with status `1` when memory or swap pressure crosses configured thresholds.
 
 ## Run Health Checks
 
@@ -97,6 +110,8 @@ bash -n monitoring/disk-monitor.sh
 bash -n health-checks/system-health.sh
 bash -n cleanup/log-cleanup.sh
 bash -n backups/backup-home-directory.sh
+bash -n scripts/process-monitor.sh
+bash -n scripts/memory-monitor.sh
 ```
 
 Use manual execution only on hosts where the target paths and permissions are understood.
@@ -122,8 +137,8 @@ If a script fails:
 5. Review recent system changes.
 6. Update the relevant runbook if the failure mode is repeatable.
 
-## Day 2 Scope
+## Day 8 Scope
 
-This Day 2 version documents the toolkit foundation and usage model.
+This Day 8 version adds host memory monitoring and a memory pressure runbook.
 
 Future commits will add dedicated monitoring scripts, cron examples, operational runbooks, troubleshooting guides, and script standards.

@@ -11,6 +11,7 @@ This document catalogs the automation scripts in the toolkit and defines how scr
 | `cleanup/log-cleanup.sh` | Maintenance | Can old log files be removed based on the configured retention period? |
 | `backups/backup-home-directory.sh` | Backup | Can the user's home directory be archived with a timestamped filename? |
 | `scripts/process-monitor.sh` | Monitoring | Which processes are consuming resources, and has a required process disappeared? |
+| `scripts/memory-monitor.sh` | Monitoring | Is the host under sustained memory or swap pressure? |
 
 ## Directory Conventions
 
@@ -74,11 +75,30 @@ Configuration can also be supplied with `CPU_THRESHOLD`, `MEMORY_THRESHOLD`, `TO
 
 See [the process monitor runbook](../docs/process-monitor-runbook.md) for triage and escalation procedures.
 
+## Memory Monitor
+
+The memory monitor is a read-only host pressure check for Linux systems:
+
+```bash
+./scripts/memory-monitor.sh --used-threshold 85 --available-threshold 10 --swap-threshold 50 --top 10
+```
+
+It reports memory totals, available memory, swap usage, and the highest resident-memory processes. It uses `MemAvailable` from `/proc/meminfo` as the primary pressure signal because `MemFree` alone is misleading on Linux hosts that use filesystem cache.
+
+Configuration can also be supplied with `MEMORY_USED_THRESHOLD`, `MEMORY_AVAILABLE_THRESHOLD`, `SWAP_USED_THRESHOLD`, `TOP_COUNT`, and `CHECK_SWAP` environment variables. Command-line options take precedence.
+
+| Exit Code | Meaning |
+| --- | --- |
+| `0` | No memory pressure thresholds crossed. |
+| `1` | Memory or swap pressure needs investigation. |
+| `2` | Configuration, dependency, or platform error. |
+
+See [the memory monitor runbook](../docs/memory-monitor-runbook.md) for triage and escalation procedures.
+
 ## Planned Scripts
 
 Future roadmap additions include:
 
-- `memory-monitor.sh`
 - `nginx-health-check.sh`
 - `backup-rotation.sh`
 
