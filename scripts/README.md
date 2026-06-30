@@ -12,6 +12,7 @@ This document catalogs the automation scripts in the toolkit and defines how scr
 | `backups/backup-home-directory.sh` | Backup | Can the user's home directory be archived with a timestamped filename? |
 | `scripts/process-monitor.sh` | Monitoring | Which processes are consuming resources, and has a required process disappeared? |
 | `scripts/memory-monitor.sh` | Monitoring | Is the host under sustained memory or swap pressure? |
+| `scripts/nginx-health-check.sh` | Health check | Is the NGINX endpoint returning the expected status? |
 
 ## Directory Conventions
 
@@ -95,11 +96,28 @@ Configuration can also be supplied with `MEMORY_USED_THRESHOLD`, `MEMORY_AVAILAB
 
 See [the memory monitor runbook](../docs/memory-monitor-runbook.md) for triage and escalation procedures.
 
+## NGINX Health Check
+
+The NGINX health check validates an HTTP endpoint and can optionally verify that an NGINX process is present:
+
+```bash
+./scripts/nginx-health-check.sh --url http://127.0.0.1/ --expected-status 200 --timeout 5 --require-process
+```
+
+Configuration can also be supplied with `URL`, `EXPECTED_STATUS`, `TIMEOUT_SECONDS`, `REQUIRE_PROCESS`, `PROCESS_PATTERN`, and `SERVICE_NAME` environment variables. Command-line options take precedence.
+
+| Exit Code | Meaning |
+| --- | --- |
+| `0` | Endpoint returned the expected status and required process checks passed. |
+| `1` | Endpoint or process check failed. |
+| `2` | Configuration or dependency error. |
+
+See [the NGINX health check runbook](../docs/nginx-health-check-runbook.md) for triage and escalation procedures.
+
 ## Planned Scripts
 
 Future roadmap additions include:
 
-- `nginx-health-check.sh`
 - `backup-rotation.sh`
 
 These scripts will be added gradually in separate commits so the repository history looks like realistic operational development.

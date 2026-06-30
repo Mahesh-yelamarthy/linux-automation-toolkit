@@ -24,9 +24,9 @@ This toolkit will gradually cover:
 
 ## Current Status
 
-Day 8 memory monitoring is complete.
+Day 11 NGINX health checking is complete.
 
-The toolkit now includes production-oriented process and memory monitors with configurable thresholds, operational exit codes, and dedicated incident response runbooks.
+The toolkit now includes production-oriented process, memory, and NGINX endpoint monitors with configurable thresholds, operational exit codes, and dedicated incident response runbooks.
 
 ## Repository Structure
 
@@ -40,6 +40,7 @@ linux-automation-toolkit/
 ├── docs/
 │   ├── kubernetes-notes.md
 │   ├── memory-monitor-runbook.md
+│   ├── nginx-health-check-runbook.md
 │   ├── process-monitor-runbook.md
 │   └── usage.md
 ├── health-checks/
@@ -48,6 +49,7 @@ linux-automation-toolkit/
 │   └── disk-monitor.sh
 └── scripts/
     ├── memory-monitor.sh
+    ├── nginx-health-check.sh
     ├── process-monitor.sh
     └── README.md
 ```
@@ -69,6 +71,7 @@ runbooks/
 | `backups/backup-home-directory.sh` | Backup | Creates a timestamped compressed backup of the current user's home directory. |
 | `scripts/process-monitor.sh` | Monitoring | Ranks CPU and memory consumers, detects threshold violations, and verifies required processes. |
 | `scripts/memory-monitor.sh` | Monitoring | Reports memory pressure, swap usage, and top resident-memory consumers. |
+| `scripts/nginx-health-check.sh` | Health checks | Validates an NGINX endpoint status and optionally checks for an NGINX process. |
 
 ## Example Commands
 
@@ -101,6 +104,18 @@ Run the memory monitor:
 ```
 
 Exit status `0` means memory pressure is within thresholds, `1` indicates pressure that needs investigation, and `2` indicates invalid configuration or an unsupported runtime.
+
+Run the NGINX health check:
+
+```bash
+./scripts/nginx-health-check.sh \
+  --url http://127.0.0.1/ \
+  --expected-status 200 \
+  --timeout 5 \
+  --require-process
+```
+
+Exit status `0` means the endpoint and optional process check passed, `1` indicates an operational issue, and `2` indicates invalid configuration or a missing dependency.
 
 Run the system health check:
 
@@ -147,6 +162,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 - [Script catalog](scripts/README.md)
 - [Usage guide](docs/usage.md)
 - [Memory monitor runbook](docs/memory-monitor-runbook.md)
+- [NGINX health check runbook](docs/nginx-health-check-runbook.md)
 - [Process monitor runbook](docs/process-monitor-runbook.md)
 - [Kubernetes notes](docs/kubernetes-notes.md)
 
@@ -160,10 +176,10 @@ This repository is designed to show practical operations ability:
 - Safe automation habits
 - Documentation that helps another engineer operate the toolkit
 
-## Day 8 Commit
+## Day 11 Commit
 
 Recommended commit message:
 
 ```text
-feat: add linux memory monitoring script
+feat: add nginx health check script
 ```

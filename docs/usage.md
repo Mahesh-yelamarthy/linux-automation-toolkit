@@ -57,6 +57,19 @@ Expected behavior:
 - Prints the top resident-memory processes.
 - Exits with status `1` when memory or swap pressure crosses configured thresholds.
 
+NGINX endpoint health check:
+
+```bash
+./scripts/nginx-health-check.sh --url http://127.0.0.1/ --expected-status 200 --timeout 5
+```
+
+Expected behavior:
+
+- Sends an HTTP request to the configured endpoint.
+- Compares the returned status code with the expected status.
+- Prints request timing and remote IP when available.
+- Optionally verifies that an NGINX process is running.
+
 ## Run Health Checks
 
 System health check:
@@ -112,6 +125,7 @@ bash -n cleanup/log-cleanup.sh
 bash -n backups/backup-home-directory.sh
 bash -n scripts/process-monitor.sh
 bash -n scripts/memory-monitor.sh
+bash -n scripts/nginx-health-check.sh
 ```
 
 Use manual execution only on hosts where the target paths and permissions are understood.
@@ -137,8 +151,8 @@ If a script fails:
 5. Review recent system changes.
 6. Update the relevant runbook if the failure mode is repeatable.
 
-## Day 8 Scope
+## Day 11 Scope
 
-This Day 8 version adds host memory monitoring and a memory pressure runbook.
+This Day 11 version adds NGINX endpoint health checking and an operational runbook.
 
 Future commits will add dedicated monitoring scripts, cron examples, operational runbooks, troubleshooting guides, and script standards.
