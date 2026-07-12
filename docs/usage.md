@@ -114,6 +114,24 @@ Expected behavior:
 - Generates a timestamped `.tar.gz` archive.
 - Prints the backup path.
 
+Backup rotation dry-run:
+
+```bash
+./backups/backup-rotation.sh \
+  --backup-dir /var/backups/app \
+  --retention-days 14 \
+  --min-keep 3 \
+  --pattern '*.tar.gz' \
+  --dry-run
+```
+
+Expected behavior:
+
+- Counts matching backup files.
+- Lists old files that are eligible for rotation.
+- Preserves the configured minimum number of backup files.
+- Does not delete files unless `--delete` is provided.
+
 ## Recommended Validation
 
 Use shell syntax checks before committing changes:
@@ -123,6 +141,7 @@ bash -n monitoring/disk-monitor.sh
 bash -n health-checks/system-health.sh
 bash -n cleanup/log-cleanup.sh
 bash -n backups/backup-home-directory.sh
+bash -n backups/backup-rotation.sh
 bash -n scripts/process-monitor.sh
 bash -n scripts/memory-monitor.sh
 bash -n scripts/nginx-health-check.sh
@@ -151,8 +170,8 @@ If a script fails:
 5. Review recent system changes.
 6. Update the relevant runbook if the failure mode is repeatable.
 
-## Day 11 Scope
+## Current Scope
 
-This Day 11 version adds NGINX endpoint health checking and an operational runbook.
+This version includes process monitoring, memory pressure monitoring, NGINX endpoint checking, and backup rotation automation with operational runbooks.
 
-Future commits will add dedicated monitoring scripts, cron examples, operational runbooks, troubleshooting guides, and script standards.
+Future commits will add cron examples, troubleshooting guides, and script standards.

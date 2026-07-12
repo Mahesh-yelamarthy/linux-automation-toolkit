@@ -24,9 +24,9 @@ This toolkit will gradually cover:
 
 ## Current Status
 
-Day 11 NGINX health checking is complete.
+Day 14 backup rotation automation is complete.
 
-The toolkit now includes production-oriented process, memory, and NGINX endpoint monitors with configurable thresholds, operational exit codes, and dedicated incident response runbooks.
+The toolkit now includes production-oriented process, memory, and NGINX endpoint monitors plus safe backup rotation automation with configurable retention, operational exit codes, and dedicated incident response runbooks.
 
 ## Repository Structure
 
@@ -34,11 +34,13 @@ The toolkit now includes production-oriented process, memory, and NGINX endpoint
 linux-automation-toolkit/
 ├── README.md
 ├── backups/
+│   ├── backup-rotation.sh
 │   └── backup-home-directory.sh
 ├── cleanup/
 │   └── log-cleanup.sh
 ├── docs/
 │   ├── kubernetes-notes.md
+│   ├── backup-rotation-runbook.md
 │   ├── memory-monitor-runbook.md
 │   ├── nginx-health-check-runbook.md
 │   ├── process-monitor-runbook.md
@@ -69,6 +71,7 @@ runbooks/
 | `health-checks/system-health.sh` | Health checks | Prints host, uptime, memory, disk, and top process information for quick triage. |
 | `cleanup/log-cleanup.sh` | Maintenance | Removes old `.log` files from `/var/log` based on a retention period. |
 | `backups/backup-home-directory.sh` | Backup | Creates a timestamped compressed backup of the current user's home directory. |
+| `backups/backup-rotation.sh` | Backup | Rotates old backup archives with dry-run safety and minimum-retention protection. |
 | `scripts/process-monitor.sh` | Monitoring | Ranks CPU and memory consumers, detects threshold violations, and verifies required processes. |
 | `scripts/memory-monitor.sh` | Monitoring | Reports memory pressure, swap usage, and top resident-memory consumers. |
 | `scripts/nginx-health-check.sh` | Health checks | Validates an NGINX endpoint status and optionally checks for an NGINX process. |
@@ -135,6 +138,19 @@ Run the home directory backup:
 bash backups/backup-home-directory.sh
 ```
 
+Preview backup rotation:
+
+```bash
+./backups/backup-rotation.sh \
+  --backup-dir /var/backups/app \
+  --retention-days 14 \
+  --min-keep 3 \
+  --pattern '*.tar.gz' \
+  --dry-run
+```
+
+Exit status `0` means rotation completed or no deletion was required, `1` indicates a policy condition that needs review, and `2` indicates invalid configuration, permissions, or an unsafe target.
+
 ## Operational Safety
 
 Before running scripts on a production host:
@@ -161,6 +177,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 
 - [Script catalog](scripts/README.md)
 - [Usage guide](docs/usage.md)
+- [Backup rotation runbook](docs/backup-rotation-runbook.md)
 - [Memory monitor runbook](docs/memory-monitor-runbook.md)
 - [NGINX health check runbook](docs/nginx-health-check-runbook.md)
 - [Process monitor runbook](docs/process-monitor-runbook.md)
@@ -176,10 +193,10 @@ This repository is designed to show practical operations ability:
 - Safe automation habits
 - Documentation that helps another engineer operate the toolkit
 
-## Day 11 Commit
+## Day 14 Commit
 
 Recommended commit message:
 
 ```text
-feat: add nginx health check script
+feat: add backup rotation automation
 ```

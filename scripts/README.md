@@ -10,6 +10,7 @@ This document catalogs the automation scripts in the toolkit and defines how scr
 | `health-checks/system-health.sh` | Health check | What is the current high-level condition of the host? |
 | `cleanup/log-cleanup.sh` | Maintenance | Can old log files be removed based on the configured retention period? |
 | `backups/backup-home-directory.sh` | Backup | Can the user's home directory be archived with a timestamped filename? |
+| `backups/backup-rotation.sh` | Backup | Which backup archives are old enough to rotate, and is the minimum keep policy protected? |
 | `scripts/process-monitor.sh` | Monitoring | Which processes are consuming resources, and has a required process disappeared? |
 | `scripts/memory-monitor.sh` | Monitoring | Is the host under sustained memory or swap pressure? |
 | `scripts/nginx-health-check.sh` | Health check | Is the NGINX endpoint returning the expected status? |
@@ -114,10 +115,28 @@ Configuration can also be supplied with `URL`, `EXPECTED_STATUS`, `TIMEOUT_SECON
 
 See [the NGINX health check runbook](../docs/nginx-health-check-runbook.md) for triage and escalation procedures.
 
+## Backup Rotation
+
+The backup rotation script is a guarded retention tool for backup archive directories:
+
+```bash
+./backups/backup-rotation.sh --backup-dir /var/backups/app --retention-days 14 --min-keep 3 --pattern '*.tar.gz' --dry-run
+```
+
+The script runs in dry-run mode by default and requires `--delete` before files are removed. It refuses broad system paths and always preserves the configured minimum number of matching backup files.
+
+| Exit Code | Meaning |
+| --- | --- |
+| `0` | Rotation completed, skipped safely, or dry-run completed. |
+| `1` | No matching backup files were found and operator review is needed. |
+| `2` | Invalid configuration, dependency, permission, or unsafe target. |
+
+See [the backup rotation runbook](../docs/backup-rotation-runbook.md) for triage and scheduling guidance.
+
 ## Planned Scripts
 
 Future roadmap additions include:
 
-- `backup-rotation.sh`
+- Cron examples for recurring checks and maintenance
 
 These scripts will be added gradually in separate commits so the repository history looks like realistic operational development.
