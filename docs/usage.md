@@ -157,7 +157,30 @@ When running scripts unattended, redirect output to a log file:
 bash monitoring/disk-monitor.sh >> /var/log/linux-automation-toolkit.log 2>&1
 ```
 
-For cron-based execution, future examples will include explicit schedules and log redirection.
+For cron-based execution, use the reviewed example in:
+
+```text
+cron/linux-automation-toolkit.cron
+```
+
+Customize `TOOLKIT_HOME`, `LOG_FILE`, thresholds, and backup paths before installing.
+
+## Cron Scheduling
+
+Review the cron example:
+
+```bash
+sed -n '1,200p' cron/linux-automation-toolkit.cron
+```
+
+Install only after manual validation:
+
+```bash
+crontab cron/linux-automation-toolkit.cron
+crontab -l
+```
+
+See `docs/cron-scheduling.md` for schedule rationale and failure review.
 
 ## Failure Handling
 
@@ -172,6 +195,6 @@ If a script fails:
 
 ## Current Scope
 
-This version includes process monitoring, memory pressure monitoring, NGINX endpoint checking, and backup rotation automation with operational runbooks.
+This version includes process monitoring, memory pressure monitoring, NGINX endpoint checking, backup rotation automation, and cron scheduling examples with operational runbooks.
 
-Future commits will add cron examples, troubleshooting guides, and script standards.
+Future commits will add troubleshooting guides and script standards.

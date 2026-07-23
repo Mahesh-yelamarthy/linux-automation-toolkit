@@ -53,6 +53,8 @@ Before adding a script to cron:
 5. Redirect output to an operational log.
 6. Document the owner and expected response.
 
+The current cron example is stored at `../cron/linux-automation-toolkit.cron`. Treat it as a reviewed starting point, not a production drop-in.
+
 ## Process Monitor
 
 The process monitor is a read-only triage and alerting command for Linux hosts:
@@ -137,6 +139,7 @@ See [the backup rotation runbook](../docs/backup-rotation-runbook.md) for triage
 
 Future roadmap additions include:
 
-- Cron examples for recurring checks and maintenance
+- Linux troubleshooting guides
+- Script logging and safety standards
 
 These scripts will be added gradually in separate commits so the repository history looks like realistic operational development.

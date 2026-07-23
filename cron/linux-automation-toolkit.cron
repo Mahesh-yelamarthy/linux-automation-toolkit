@@ -1,0 +1,25 @@
+# Linux Automation Toolkit cron examples
+#
+# Install only after reviewing paths, thresholds, permissions, and runbook expectations.
+# Replace /opt/linux-automation-toolkit with the actual checkout path on the host.
+# Redirect output so unattended runs leave an audit trail for SRE review.
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+TOOLKIT_HOME=/opt/linux-automation-toolkit
+LOG_FILE=/var/log/linux-automation-toolkit.log
+
+# Every 5 minutes: detect missing critical process or high process resource usage.
+*/5 * * * * cd "$TOOLKIT_HOME" && ./scripts/process-monitor.sh --cpu-threshold 85 --memory-threshold 75 --top 10 --require-process nginx >> "$LOG_FILE" 2>&1
+
+# Every 10 minutes: detect host memory and swap pressure.
+*/10 * * * * cd "$TOOLKIT_HOME" && ./scripts/memory-monitor.sh --used-threshold 85 --available-threshold 10 --swap-threshold 50 --top 10 >> "$LOG_FILE" 2>&1
+
+# Every 2 minutes: validate local NGINX endpoint health.
+*/2 * * * * cd "$TOOLKIT_HOME" && ./scripts/nginx-health-check.sh --url http://127.0.0.1/ --expected-status 200 --timeout 5 --require-process >> "$LOG_FILE" 2>&1
+
+# Daily at 01:15 UTC: rotate application backup archives after manual dry-run validation.
+15 1 * * * cd "$TOOLKIT_HOME" && ./backups/backup-rotation.sh --backup-dir /var/backups/app --retention-days 14 --min-keep 3 --pattern 'app-*.tar.gz' --delete >> "$LOG_FILE" 2>&1
+
+# Weekly Sunday at 02:30 UTC: capture a quick host health snapshot for trend review.
+30 2 * * 0 cd "$TOOLKIT_HOME" && ./health-checks/system-health.sh >> "$LOG_FILE" 2>&1

@@ -24,9 +24,9 @@ This toolkit will gradually cover:
 
 ## Current Status
 
-Day 14 backup rotation automation is complete.
+Day 17 cron scheduling examples are complete.
 
-The toolkit now includes production-oriented process, memory, and NGINX endpoint monitors plus safe backup rotation automation with configurable retention, operational exit codes, and dedicated incident response runbooks.
+The toolkit now includes production-oriented process, memory, and NGINX endpoint monitors, safe backup rotation automation, and cron scheduling examples with configurable retention, operational exit codes, and dedicated incident response runbooks.
 
 ## Repository Structure
 
@@ -38,7 +38,10 @@ linux-automation-toolkit/
 │   └── backup-home-directory.sh
 ├── cleanup/
 │   └── log-cleanup.sh
+├── cron/
+│   └── linux-automation-toolkit.cron
 ├── docs/
+│   ├── cron-scheduling.md
 │   ├── kubernetes-notes.md
 │   ├── backup-rotation-runbook.md
 │   ├── memory-monitor-runbook.md
@@ -56,13 +59,6 @@ linux-automation-toolkit/
     └── README.md
 ```
 
-Planned future directories:
-
-```text
-cron/
-runbooks/
-```
-
 ## Current Script Inventory
 
 | Script | Category | Purpose |
@@ -75,6 +71,18 @@ runbooks/
 | `scripts/process-monitor.sh` | Monitoring | Ranks CPU and memory consumers, detects threshold violations, and verifies required processes. |
 | `scripts/memory-monitor.sh` | Monitoring | Reports memory pressure, swap usage, and top resident-memory consumers. |
 | `scripts/nginx-health-check.sh` | Health checks | Validates an NGINX endpoint status and optionally checks for an NGINX process. |
+
+## Cron Examples
+
+The cron example file is stored at:
+
+```text
+cron/linux-automation-toolkit.cron
+```
+
+It includes schedules for process monitoring, memory monitoring, NGINX health checking, backup rotation, and weekly system health snapshots.
+
+Review and customize `TOOLKIT_HOME`, `LOG_FILE`, thresholds, and backup paths before installing it on any host.
 
 ## Example Commands
 
@@ -178,6 +186,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 - [Script catalog](scripts/README.md)
 - [Usage guide](docs/usage.md)
 - [Backup rotation runbook](docs/backup-rotation-runbook.md)
+- [Cron scheduling guide](docs/cron-scheduling.md)
 - [Memory monitor runbook](docs/memory-monitor-runbook.md)
 - [NGINX health check runbook](docs/nginx-health-check-runbook.md)
 - [Process monitor runbook](docs/process-monitor-runbook.md)
@@ -193,10 +202,10 @@ This repository is designed to show practical operations ability:
 - Safe automation habits
 - Documentation that helps another engineer operate the toolkit
 
-## Day 14 Commit
+## Day 17 Commit
 
 Recommended commit message:
 
 ```text
-feat: add backup rotation automation
+docs: add cron scheduling examples
 ```
