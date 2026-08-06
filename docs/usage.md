@@ -193,8 +193,27 @@ If a script fails:
 5. Review recent system changes.
 6. Update the relevant runbook if the failure mode is repeatable.
 
+## Host Troubleshooting Workflow
+
+For production incidents, start with the Linux troubleshooting guide:
+
+```text
+docs/linux-troubleshooting-guide.md
+```
+
+The guide shows how to collect host context, choose the right toolkit command, investigate CPU, memory, disk, service, network, cron, and backup symptoms, and capture evidence for escalation.
+
+Use the toolkit as part of triage:
+
+```bash
+bash health-checks/system-health.sh
+./scripts/process-monitor.sh --cpu-threshold 85 --memory-threshold 75 --top 10
+./scripts/memory-monitor.sh --used-threshold 85 --available-threshold 10 --swap-threshold 50 --top 10
+./scripts/nginx-health-check.sh --url http://127.0.0.1/ --expected-status 200 --timeout 5 --require-process
+```
+
 ## Current Scope
 
-This version includes process monitoring, memory pressure monitoring, NGINX endpoint checking, backup rotation automation, and cron scheduling examples with operational runbooks.
+This version includes process monitoring, memory pressure monitoring, NGINX endpoint checking, backup rotation automation, cron scheduling examples, and a Linux troubleshooting guide with operational runbooks.
 
-Future commits will add troubleshooting guides and script standards.
+Future commits will add script standards and additional reliability documentation.

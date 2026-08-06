@@ -55,6 +55,21 @@ Before adding a script to cron:
 
 The current cron example is stored at `../cron/linux-automation-toolkit.cron`. Treat it as a reviewed starting point, not a production drop-in.
 
+## Troubleshooting Workflow
+
+Use the scripts as evidence collectors during host incidents, not as isolated commands. A normal investigation should begin with host context, then move to the script that matches the symptom.
+
+Recommended first pass:
+
+```bash
+bash ../health-checks/system-health.sh
+./process-monitor.sh --cpu-threshold 85 --memory-threshold 75 --top 10
+./memory-monitor.sh --used-threshold 85 --available-threshold 10 --swap-threshold 50 --top 10
+./nginx-health-check.sh --url http://127.0.0.1/ --expected-status 200 --timeout 5 --require-process
+```
+
+See [the Linux troubleshooting guide](../docs/linux-troubleshooting-guide.md) for the full incident workflow, evidence checklist, and escalation criteria.
+
 ## Process Monitor
 
 The process monitor is a read-only triage and alerting command for Linux hosts:
@@ -139,7 +154,6 @@ See [the backup rotation runbook](../docs/backup-rotation-runbook.md) for triage
 
 Future roadmap additions include:
 
-- Linux troubleshooting guides
 - Script logging and safety standards
 
 These scripts will be added gradually in separate commits so the repository history looks like realistic operational development.

@@ -24,9 +24,9 @@ This toolkit will gradually cover:
 
 ## Current Status
 
-Day 17 cron scheduling examples are complete.
+Day 20 Linux troubleshooting guide is complete.
 
-The toolkit now includes production-oriented process, memory, and NGINX endpoint monitors, safe backup rotation automation, and cron scheduling examples with configurable retention, operational exit codes, and dedicated incident response runbooks.
+The toolkit now includes production-oriented process, memory, and NGINX endpoint monitors, safe backup rotation automation, cron scheduling examples, and a structured Linux host troubleshooting guide with configurable retention, operational exit codes, and dedicated incident response runbooks.
 
 ## Repository Structure
 
@@ -43,6 +43,7 @@ linux-automation-toolkit/
 ├── docs/
 │   ├── cron-scheduling.md
 │   ├── kubernetes-notes.md
+│   ├── linux-troubleshooting-guide.md
 │   ├── backup-rotation-runbook.md
 │   ├── memory-monitor-runbook.md
 │   ├── nginx-health-check-runbook.md
@@ -180,6 +181,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 - Creating repeatable backup workflows
 - Preparing scripts for scheduled execution
 - Documenting operational procedures for handoff
+- Running structured Linux host incident triage
 
 ## Documentation
 
@@ -187,6 +189,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 - [Usage guide](docs/usage.md)
 - [Backup rotation runbook](docs/backup-rotation-runbook.md)
 - [Cron scheduling guide](docs/cron-scheduling.md)
+- [Linux troubleshooting guide](docs/linux-troubleshooting-guide.md)
 - [Memory monitor runbook](docs/memory-monitor-runbook.md)
 - [NGINX health check runbook](docs/nginx-health-check-runbook.md)
 - [Process monitor runbook](docs/process-monitor-runbook.md)
@@ -202,10 +205,10 @@ This repository is designed to show practical operations ability:
 - Safe automation habits
 - Documentation that helps another engineer operate the toolkit
 
-## Day 17 Commit
+## Day 20 Commit
 
 Recommended commit message:
 
 ```text
-docs: add cron scheduling examples
+docs: add linux troubleshooting guide
 ```
