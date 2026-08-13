@@ -40,6 +40,14 @@ Every production-ready script should eventually include:
 - Comments only where behavior is not obvious
 - Documentation that explains when and how to run it
 
+The detailed repository standard is documented in:
+
+```text
+../docs/script-logging-and-safety-standards.md
+```
+
+Use that standard when adding scripts, changing exit codes, adding cron schedules, or introducing destructive actions.
+
 ## Safety Notes
 
 Scripts that delete, rotate, or archive data should be reviewed before scheduled execution.
@@ -152,8 +160,4 @@ See [the backup rotation runbook](../docs/backup-rotation-runbook.md) for triage
 
 ## Planned Scripts
 
-Future roadmap additions include:
-
-- Script logging and safety standards
-
-These scripts will be added gradually in separate commits so the repository history looks like realistic operational development.
+Future roadmap additions will continue to expand reliability documentation and production maintenance examples in separate commits so the repository history looks like realistic operational development.

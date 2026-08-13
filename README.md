@@ -24,9 +24,9 @@ This toolkit will gradually cover:
 
 ## Current Status
 
-Day 20 Linux troubleshooting guide is complete.
+Day 23 script logging and safety standards are complete.
 
-The toolkit now includes production-oriented process, memory, and NGINX endpoint monitors, safe backup rotation automation, cron scheduling examples, and a structured Linux host troubleshooting guide with configurable retention, operational exit codes, and dedicated incident response runbooks.
+The toolkit now includes production-oriented process, memory, and NGINX endpoint monitors, safe backup rotation automation, cron scheduling examples, a structured Linux host troubleshooting guide, and script logging and safety standards with configurable retention, operational exit codes, and dedicated incident response runbooks.
 
 ## Repository Structure
 
@@ -48,6 +48,7 @@ linux-automation-toolkit/
 │   ├── memory-monitor-runbook.md
 │   ├── nginx-health-check-runbook.md
 │   ├── process-monitor-runbook.md
+│   ├── script-logging-and-safety-standards.md
 │   └── usage.md
 ├── health-checks/
 │   └── system-health.sh
@@ -193,6 +194,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 - [Memory monitor runbook](docs/memory-monitor-runbook.md)
 - [NGINX health check runbook](docs/nginx-health-check-runbook.md)
 - [Process monitor runbook](docs/process-monitor-runbook.md)
+- [Script logging and safety standards](docs/script-logging-and-safety-standards.md)
 - [Kubernetes notes](docs/kubernetes-notes.md)
 
 ## Recruiter Signal
@@ -205,10 +207,10 @@ This repository is designed to show practical operations ability:
 - Safe automation habits
 - Documentation that helps another engineer operate the toolkit
 
-## Day 20 Commit
+## Day 23 Commit
 
 Recommended commit message:
 
 ```text
-docs: add linux troubleshooting guide
+docs: add script logging and safety standards
 ```

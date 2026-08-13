@@ -165,6 +165,14 @@ cron/linux-automation-toolkit.cron
 
 Customize `TOOLKIT_HOME`, `LOG_FILE`, thresholds, and backup paths before installing.
 
+For repository-wide expectations, review:
+
+```text
+docs/script-logging-and-safety-standards.md
+```
+
+This standard defines logging format, exit codes, input validation, destructive action controls, cron behavior, and script review expectations.
+
 ## Cron Scheduling
 
 Review the cron example:
@@ -214,6 +222,6 @@ bash health-checks/system-health.sh
 
 ## Current Scope
 
-This version includes process monitoring, memory pressure monitoring, NGINX endpoint checking, backup rotation automation, cron scheduling examples, and a Linux troubleshooting guide with operational runbooks.
+This version includes process monitoring, memory pressure monitoring, NGINX endpoint checking, backup rotation automation, cron scheduling examples, a Linux troubleshooting guide, and script logging and safety standards with operational runbooks.
 
-Future commits will add script standards and additional reliability documentation.
+Future commits will add additional reliability documentation and production maintenance examples.
