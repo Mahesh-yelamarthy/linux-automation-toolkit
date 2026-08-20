@@ -44,6 +44,12 @@ Expected behavior:
 - Compares usage against the configured threshold.
 - Prints either a warning or an under-control message.
 
+For investigation and response when disk usage is high, use:
+
+```text
+docs/disk-pressure-runbook.md
+```
+
 Memory pressure monitor:
 
 ```bash
@@ -222,6 +228,6 @@ bash health-checks/system-health.sh
 
 ## Current Scope
 
-This version includes process monitoring, memory pressure monitoring, NGINX endpoint checking, backup rotation automation, cron scheduling examples, a Linux troubleshooting guide, and script logging and safety standards with operational runbooks.
+This version includes process monitoring, memory pressure monitoring, disk pressure response guidance, NGINX endpoint checking, backup rotation automation, cron scheduling examples, a Linux troubleshooting guide, and script logging and safety standards with operational runbooks.
 
 Future commits will add additional reliability documentation and production maintenance examples.

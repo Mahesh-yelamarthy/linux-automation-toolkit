@@ -172,6 +172,12 @@ bash cleanup/log-cleanup.sh
 
 Run destructive cleanup only after reviewing the target path and retention behavior.
 
+Use the disk pressure runbook for the full investigation, cleanup safety, backup rotation, escalation, and evidence workflow:
+
+```text
+docs/disk-pressure-runbook.md
+```
+
 ## Service and NGINX Failures
 
 For systemd-managed services:

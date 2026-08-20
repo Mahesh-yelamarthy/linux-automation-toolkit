@@ -158,6 +158,19 @@ The script runs in dry-run mode by default and requires `--delete` before files 
 
 See [the backup rotation runbook](../docs/backup-rotation-runbook.md) for triage and scheduling guidance.
 
+## Disk Monitor and Log Cleanup
+
+The disk monitor and log cleanup scripts support disk pressure investigation and maintenance:
+
+```bash
+bash monitoring/disk-monitor.sh
+bash cleanup/log-cleanup.sh
+```
+
+The disk monitor is read-only. The log cleanup script deletes old `*.log` files from `/var/log`, so review the target files before running it on a production host.
+
+See [the disk pressure runbook](../docs/disk-pressure-runbook.md) for investigation commands, safe cleanup workflow, backup rotation usage, escalation criteria, and evidence capture.
+
 ## Planned Scripts
 
 Future roadmap additions will continue to expand reliability documentation and production maintenance examples in separate commits so the repository history looks like realistic operational development.

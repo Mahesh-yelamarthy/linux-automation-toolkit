@@ -24,9 +24,9 @@ This toolkit will gradually cover:
 
 ## Current Status
 
-Day 23 script logging and safety standards are complete.
+Day 26 disk pressure runbook is complete.
 
-The toolkit now includes production-oriented process, memory, and NGINX endpoint monitors, safe backup rotation automation, cron scheduling examples, a structured Linux host troubleshooting guide, and script logging and safety standards with configurable retention, operational exit codes, and dedicated incident response runbooks.
+The toolkit now includes production-oriented process, memory, disk, and NGINX endpoint monitors, safe backup rotation automation, cron scheduling examples, a structured Linux host troubleshooting guide, script logging and safety standards, and dedicated incident response runbooks.
 
 ## Repository Structure
 
@@ -42,6 +42,7 @@ linux-automation-toolkit/
 │   └── linux-automation-toolkit.cron
 ├── docs/
 │   ├── cron-scheduling.md
+│   ├── disk-pressure-runbook.md
 │   ├── kubernetes-notes.md
 │   ├── linux-troubleshooting-guide.md
 │   ├── backup-rotation-runbook.md
@@ -190,6 +191,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 - [Usage guide](docs/usage.md)
 - [Backup rotation runbook](docs/backup-rotation-runbook.md)
 - [Cron scheduling guide](docs/cron-scheduling.md)
+- [Disk pressure runbook](docs/disk-pressure-runbook.md)
 - [Linux troubleshooting guide](docs/linux-troubleshooting-guide.md)
 - [Memory monitor runbook](docs/memory-monitor-runbook.md)
 - [NGINX health check runbook](docs/nginx-health-check-runbook.md)
@@ -207,10 +209,10 @@ This repository is designed to show practical operations ability:
 - Safe automation habits
 - Documentation that helps another engineer operate the toolkit
 
-## Day 23 Commit
+## Day 26 Commit
 
 Recommended commit message:
 
 ```text
-docs: add script logging and safety standards
+docs: add disk pressure runbook
 ```
