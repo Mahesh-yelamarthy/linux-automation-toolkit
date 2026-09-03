@@ -178,6 +178,14 @@ Use the disk pressure runbook for the full investigation, cleanup safety, backup
 docs/disk-pressure-runbook.md
 ```
 
+For recurring host reviews and pre-maintenance validation, use:
+
+```text
+docs/production-maintenance-checklist.md
+```
+
+The checklist defines weekly health reviews, monthly automation review questions, dry-run expectations, post-maintenance validation, and evidence capture.
+
 ## Service and NGINX Failures
 
 For systemd-managed services:

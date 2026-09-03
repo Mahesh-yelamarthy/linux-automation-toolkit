@@ -24,9 +24,9 @@ This toolkit will gradually cover:
 
 ## Current Status
 
-Day 26 disk pressure runbook is complete.
+Day 29 production Linux maintenance checklist is complete.
 
-The toolkit now includes production-oriented process, memory, disk, and NGINX endpoint monitors, safe backup rotation automation, cron scheduling examples, a structured Linux host troubleshooting guide, script logging and safety standards, and dedicated incident response runbooks.
+The toolkit now includes production-oriented process, memory, disk, and NGINX endpoint monitors, safe backup rotation automation, cron scheduling examples, a structured Linux host troubleshooting guide, script logging and safety standards, dedicated incident response runbooks, and a production Linux maintenance checklist.
 
 ## Repository Structure
 
@@ -49,6 +49,7 @@ linux-automation-toolkit/
 │   ├── memory-monitor-runbook.md
 │   ├── nginx-health-check-runbook.md
 │   ├── process-monitor-runbook.md
+│   ├── production-maintenance-checklist.md
 │   ├── script-logging-and-safety-standards.md
 │   └── usage.md
 ├── health-checks/
@@ -181,6 +182,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 - Checking whether critical system signals look healthy
 - Cleaning up old logs to reduce disk pressure
 - Creating repeatable backup workflows
+- Reviewing production Linux maintenance safely
 - Preparing scripts for scheduled execution
 - Documenting operational procedures for handoff
 - Running structured Linux host incident triage
@@ -196,6 +198,7 @@ This toolkit is designed around common SRE and Linux operations scenarios:
 - [Memory monitor runbook](docs/memory-monitor-runbook.md)
 - [NGINX health check runbook](docs/nginx-health-check-runbook.md)
 - [Process monitor runbook](docs/process-monitor-runbook.md)
+- [Production maintenance checklist](docs/production-maintenance-checklist.md)
 - [Script logging and safety standards](docs/script-logging-and-safety-standards.md)
 - [Kubernetes notes](docs/kubernetes-notes.md)
 
@@ -209,10 +212,10 @@ This repository is designed to show practical operations ability:
 - Safe automation habits
 - Documentation that helps another engineer operate the toolkit
 
-## Day 26 Commit
+## Day 29 Commit
 
 Recommended commit message:
 
 ```text
-docs: add disk pressure runbook
+docs: add production maintenance checklist
 ```

@@ -179,6 +179,14 @@ docs/script-logging-and-safety-standards.md
 
 This standard defines logging format, exit codes, input validation, destructive action controls, cron behavior, and script review expectations.
 
+For recurring production host reviews, use:
+
+```text
+docs/production-maintenance-checklist.md
+```
+
+The checklist ties the toolkit scripts to weekly health checks, monthly automation reviews, pre-maintenance evidence capture, post-maintenance validation, and incident follow-up.
+
 ## Cron Scheduling
 
 Review the cron example:
@@ -228,6 +236,6 @@ bash health-checks/system-health.sh
 
 ## Current Scope
 
-This version includes process monitoring, memory pressure monitoring, disk pressure response guidance, NGINX endpoint checking, backup rotation automation, cron scheduling examples, a Linux troubleshooting guide, and script logging and safety standards with operational runbooks.
+This version includes process monitoring, memory pressure monitoring, disk pressure response guidance, NGINX endpoint checking, backup rotation automation, cron scheduling examples, a Linux troubleshooting guide, script logging and safety standards, a production maintenance checklist, and operational runbooks.
 
 Future commits will add additional reliability documentation and production maintenance examples.
